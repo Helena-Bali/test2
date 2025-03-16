@@ -1,23 +1,20 @@
-body {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
-
-    > #root {
-        display: flex;
-        flex-direction: column;
-        height: inherit;
-        width: inherit;
-    }
-}
-
-.app-container {
+/* Миксины */
+@mixin flex-column {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
-.header {
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin full-size {
+    height: 100vh;
+    width: 100vw;
+}
+
+@mixin header-style {
     width: 100%;
     min-height: 88px !important;
     background: #27272A;
@@ -26,46 +23,67 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
+    @include flex-column;
+}
+
+@mixin header-section {
+    min-height: 44px !important;
+    @include flex-row;
+    align-items: center;
+    background: #27272A;
+    border-bottom: 1px solid #515151;
+}
+
+@mixin typography-style($font-size) {
+    font-size: $font-size !important;
+    color: #A1A1AA;
+    height: 44px;
+    background: #27272A;
+    margin: 0 10px !important;
+    border: none !important;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+}
+
+@mixin size($height, $width) {
+    height: $height;
+    width: $width;
+}
+
+body {
+    margin: 0;
+    @include full-size;
+
+    > #root {
+        @include flex-column;
+        height: inherit;
+        width: inherit;
+    }
+}
+
+.app-container {
+    @include flex-column;
+    height: 100vh;
+}
+
+.header {
+    @include header-style;
 }
 
 .header-top {
-    min-height: 44px !important;
-    display: flex;
-    align-items: center;
-    background: #27272A;
-    border-bottom: 1px solid #515151;
+    @include header-section;
 }
 
 .header-bottom {
-    min-height: 44px !important;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #27272A;
-    border-bottom: 1px solid #515151;
+    @include header-section;
 }
 
 .typography {
-    font-size: 14px !important;
-    color: #A1A1AA;
-    height: 44px;
-    background: #27272A;
-    margin: 0 10px 0 10px !important;
-    border: none !important;
-    display: flex;
-    align-items: center;
+    @include typography-style(14px);
 }
+
 .typography2 {
-    font-size: 10px !important;
-    color: #A1A1AA;
-    height: 44px;
-    background: #27272A;
-    margin: 0 10px 0 10px !important;
-    border: none !important;
-    display: flex;
-    align-items: center;
+    @include typography-style(10px);
 }
 
 .typography:focus {
@@ -74,27 +92,39 @@ body {
 }
 
 .header-bottom-content {
-    display: flex;
-    flex-direction: row;
+    @include flex-row;
     height: 44px;
     width: 209px;
     border-right: 1px solid #515151;
     justify-content: space-between;
 }
+
 .header-bottom-arrow {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 }
+
 .arrow-down {
-    height: 24px;
-    width: 24px;
+    @include size(24px, 24px);
     padding-top: 10px;
+}
+
+.top-menu-img {
+    @include size(24px, 24px);
+    margin-right: 20px;
+}
+
+.left-menu-img {
+    @include size(22px, 22px);
+    margin-right: 20px;
+}
+.menu-img {
+    @include size(22px, 22px);
 }
 
 .header-bottom-content2 {
     height: 44px;
     color: white;
-    padding: 0 20Px 0 20px;
+    padding: 0 20px;
     font-size: 18px !important;
     border-right: 1px solid #515151;
     display: flex;
@@ -110,12 +140,12 @@ body {
 
 .content {
     flex-grow: 1;
-    margin-left: 0; // Убираем отступ слева
-    width: calc(100% - 234px); // Занимаем всю ширину, кроме ширины меню
+    margin-left: 0;
+    width: calc(100% - 234px);
 }
 
 .table-container {
-    width: 100%; // Таблица занимает всю доступную ширину
+    width: 100%;
 }
 
 .drawer {
@@ -126,8 +156,8 @@ body {
 .drawer .MuiDrawer-paper {
     width: 234px;
     box-sizing: border-box;
-    top: 89px; /* Фиксируем под хедером */
-    height: calc(100vh - 88px); /* Делаем высоту от верха экрана минус хедер */
+    top: 89px;
+    height: calc(100vh - 88px);
     background: #27272A;
     color: white;
     border-right: 1px solid #515151;
@@ -137,4 +167,5 @@ body {
 .list-item {
     padding-bottom: 0 !important;
     padding-top: 0 !important;
+    font-size: 14px !important;
 }

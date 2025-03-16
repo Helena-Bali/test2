@@ -1,8 +1,13 @@
 import "./App.style.scss";
 import React from "react";
 import arrowBack from './assets/images/arrowBack.svg'
+import icon from './assets/images/icon.svg'
 import arrowDown from './assets/images/arrowDown.svg'
+import doc from './assets/images/doc.svg'
+import trashFill from './assets/images/trashFill.svg'
+import vector from './assets/images/vector.svg'
 import {ThemeProvider, createTheme, ThemeOptions} from "@mui/material/styles";
+
 import {
     Drawer,
     List,
@@ -25,8 +30,8 @@ const themeOptions: ThemeOptions = {
     palette: {
         mode: "dark",
         background: {
-            default: "#202124",  // Фон для всего контента
-            paper: "#202124",    // Фон для элементов вроде карточек
+            default: "#202124",
+            paper: "#202124",
         },
     },
 };
@@ -58,6 +63,8 @@ export default function TreeTable() {
             <div className="app-container">
                 <AppBar position="fixed" className="header">
                     <Toolbar className="header-top">
+                        <img className="top-menu-img" src={icon} alt="icon"/>
+                        <img className="top-menu-img" src={arrowBack} alt="arrowBack"/>
                         <Typography component="button" className="typography">Просмотр</Typography>
                         <Typography component="button" className="typography">Управление</Typography>
                     </Toolbar>
@@ -85,6 +92,7 @@ export default function TreeTable() {
                         <List>
                             {menuItems.map((text, index) => (
                                 <ListItem className="list-item" button key={index}>
+                                    <img className="left-menu-img" src={vector} alt="vector"/>
                                     <ListItemText primary={text}/>
                                 </ListItem>
                             ))}
@@ -109,7 +117,10 @@ export default function TreeTable() {
                                     {treeData.map((node) => (
                                         <React.Fragment key={node.id}>
                                             <TableRow>
-                                                <TableCell>1</TableCell>
+                                                <TableCell>
+                                                    <img className="menu-img" src={doc} alt="doc"/>
+                                                    <img className="menu-img" src={trashFill} alt="trash"/>
+                                                </TableCell>
                                                 <TableCell>{node.name}</TableCell>
                                                 <TableCell>20 348</TableCell>
                                                 <TableCell>1 750</TableCell>
@@ -119,18 +130,23 @@ export default function TreeTable() {
                                             {node.children?.map((child) => (
                                                 <React.Fragment key={child.id}>
                                                     <TableRow>
-                                                        <TableCell>2</TableCell>
-                                                        <TableCell style={{paddingLeft: 20}}>{child.name}</TableCell>
+                                                        <TableCell style={{paddingLeft: 30}}>
+                                                            <img className="menu-img" src={doc} alt="doc"/>
+                                                            <img className="menu-img" src={trashFill} alt="trash"/>
+                                                        </TableCell>
+                                                        <TableCell>{child.name}</TableCell>
                                                         <TableCell>20 348</TableCell>
                                                         <TableCell>1 750</TableCell>
                                                         <TableCell>108,07</TableCell>
                                                         <TableCell>189 172,5</TableCell>
                                                     </TableRow>
                                                     {child.children?.map((subChild) => (
-                                                        <TableRow key={subChild.id} sx={{border: "blue"}}>
-                                                            <TableCell>3</TableCell>
-                                                            <TableCell
-                                                                style={{paddingLeft: 40}}>{subChild.name}</TableCell>
+                                                        <TableRow key={subChild.id}>
+                                                            <TableCell style={{paddingLeft: 50}}>
+                                                                <img className="menu-img" src={doc} alt="doc"/>
+                                                                <img className="menu-img" src={trashFill} alt="trash"/>
+                                                            </TableCell>
+                                                            <TableCell>{subChild.name}</TableCell>
                                                             <TableCell>38 200</TableCell>
                                                             <TableCell>1 200</TableCell>
                                                             <TableCell>8,50</TableCell>
