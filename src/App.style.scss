@@ -5,15 +5,136 @@ body {
 
     > #root {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
         height: inherit;
         width: inherit;
-
-        > iframe {
-            height: 100%;
-            width: 100%;
-            border: unset;
-        }
     }
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    min-height: 88px !important;
+    background: #27272A;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-top {
+    min-height: 44px !important;
+    display: flex;
+    align-items: center;
+    background: #27272A;
+    border-bottom: 1px solid #515151;
+}
+
+.header-bottom {
+    min-height: 44px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #27272A;
+    border-bottom: 1px solid #515151;
+}
+
+.typography {
+    font-size: 14px !important;
+    color: #A1A1AA;
+    height: 44px;
+    background: #27272A;
+    margin: 0 10px 0 10px !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+}
+.typography2 {
+    font-size: 10px !important;
+    color: #A1A1AA;
+    height: 44px;
+    background: #27272A;
+    margin: 0 10px 0 10px !important;
+    border: none !important;
+    display: flex;
+    align-items: center;
+}
+
+.typography:focus {
+    color: white;
+    border-bottom: 2px solid white !important;
+}
+
+.header-bottom-content {
+    display: flex;
+    flex-direction: row;
+    height: 44px;
+    width: 209px;
+    border-right: 1px solid #515151;
+    justify-content: space-between;
+}
+.header-bottom-arrow {
+    display: flex;
+    flex-direction: column;
+}
+.arrow-down {
+    height: 24px;
+    width: 24px;
+    padding-top: 10px;
+}
+
+.header-bottom-content2 {
+    height: 44px;
+    color: white;
+    padding: 0 20Px 0 20px;
+    font-size: 18px !important;
+    border-right: 1px solid #515151;
+    display: flex;
+    align-items: center;
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 90px;
+    background: #202124;
+}
+
+.content {
+    flex-grow: 1;
+    margin-left: 0; // Убираем отступ слева
+    width: calc(100% - 234px); // Занимаем всю ширину, кроме ширины меню
+}
+
+.table-container {
+    width: 100%; // Таблица занимает всю доступную ширину
+}
+
+.drawer {
+    width: 234px;
+    flex-shrink: 0;
+}
+
+.drawer .MuiDrawer-paper {
+    width: 234px;
+    box-sizing: border-box;
+    top: 89px; /* Фиксируем под хедером */
+    height: calc(100vh - 88px); /* Делаем высоту от верха экрана минус хедер */
+    background: #27272A;
+    color: white;
+    border-right: 1px solid #515151;
+    border-top: 1px solid #515151;
+}
+
+.list-item {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
 }
